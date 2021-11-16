@@ -5,7 +5,7 @@ class Shape:
 
     Attributes:
         _x_offset (int): x offset with respect to origin (0,0) of its parent Design instance
-        _y_offset (int): x offset with respect to origin (0,0) of its parent Design instance
+        _y_offset (int): y offset with respect to origin (0,0) of its parent Design instance
         _height (int): height of rectangle
         _width (int): width of rectangle
 
@@ -27,7 +27,7 @@ class Shape:
 
         Args:
             x_offset (int): x offset with respect to origin (0,0) of its parent Design
-            y_offset (int): x offset with respect to origin (0,0) of its parent Design
+            y_offset (int): y offset with respect to origin (0,0) of its parent Design
             height (int): height of rectangle. Must be a positive integer
             width (int): Width of rectangle. Must be a positive integer
         """
@@ -107,4 +107,5 @@ class Shape:
             self._width == other._width
 
     def __str__(self) -> str:
+        """Returns string value """
         return f'x_offset:{self._x_offset}, y_offset:{self._y_offset}, w:{self._width}, l:{self._height}'

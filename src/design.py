@@ -1,6 +1,6 @@
-from src.shape import Shape
 from copy import deepcopy
 from typing import List
+from src.shape import Shape
 
 
 class Design:
