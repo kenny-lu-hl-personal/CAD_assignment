@@ -52,6 +52,24 @@ class Shape:
         self._x_offset = x_offset
         self._y_offset = y_offset
 
+    def shift_offset(self, x_offset_delta: int, y_offset_delta: int) -> None:
+        """Shifts the shape's current x and y offsets by the specified distances.
+
+        Args:
+            x_offset_delta (int): added to current x offset
+            y_offset_delta (int): added to current y offset
+
+        Raises:
+            TypeError: Inputs must be of integer type.
+        """
+        if not isinstance(x_offset_delta, int) or not isinstance(y_offset_delta, int):
+            error_message = 'x and y offset deltas must be integers'
+            print(error_message)
+            raise TypeError(error_message)
+
+        self._x_offset = x_offset_delta
+        self._y_offset = y_offset_delta
+
     def set_dimensions(self, height: int, width: int) -> None:
         """Sets the height and width of the rectangle.
 
