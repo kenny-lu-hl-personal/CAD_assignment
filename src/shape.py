@@ -1,45 +1,43 @@
 
 class Shape:
     """
-    A Shape instance represents a rectangle lying within a parent Design instance.
+    A Shape instance represents a rectangle lying within a parent(enclosing) design.
 
     Attributes:
-        _x_offset (int): x offset with respect to origin (0,0) of its parent Design instance
-        _y_offset (int): y offset with respect to origin (0,0) of its parent Design instance
-        _height (int): height of rectangle
+        _x_offset (int): x offset with respect to the origin (0,0) of the enclosing design
+        _y_offset (int): y offset with respect to the origin (0,0) of the enclosing design
         _width (int): width of rectangle
-
+        _height (int): height of rectangle
 
     Methods:
         def set_offset(self, x_offset: int, y_offset: int) -> None:
             Sets the offset with respect to origin of the parent Design.
-        def set_dimensions(self, height: int, width: int) -> None:
+        def set_dimensions(self, width: int, height: int) -> None:
             Sets the width  of the rectangle.
         def get_area(self) -> int:
             Returns area of the rectangle.
         def get_offset(self) -> int:
             Returns offset with respect to parent Design.
-
     """
 
-    def __init__(self, x_offset: int, y_offset: int, height: int, width: int):
+    def __init__(self, x_offset: int, y_offset: int, width: int, height: int):
         """Initializes offset and dimensions.
 
         Args:
-            x_offset (int): x offset with respect to origin (0,0) of its parent Design
-            y_offset (int): y offset with respect to origin (0,0) of its parent Design
-            height (int): height of rectangle. Must be a positive integer
+            x_offset (int): x offset with respect to the origin (0,0) of the enclosing design
+            y_offset (int): y offset with respect to the origin (0,0) of the enclosing design
             width (int): Width of rectangle. Must be a positive integer
+            height (int): height of rectangle. Must be a positive integer
         """
         self.set_offset(x_offset, y_offset)
-        self.set_dimensions(height, width)
+        self.set_dimensions(width, height)
 
     def set_offset(self, x_offset: int, y_offset: int) -> None:
-        """Sets the offset with respect to the origin (0, 0) of the parent Design
+        """Sets the offset with respect to the origin (0, 0) of the enclosing(parent) design
 
         Args:
-            x_offset (int): x offset with respect to origin (0,0) of its parent Design
-            y_offset (int): y offset with respect to origin (0,0) of its parent Design
+            x_offset (int): x offset with respect to the origin (0,0) of the enclosing design
+            y_offset (int): y offset with respect to the origin (0,0) of the enclosing design
 
         Raises:
             TypeError: Inputs must be of integer type.
@@ -52,7 +50,7 @@ class Shape:
         self._x_offset = x_offset
         self._y_offset = y_offset
 
-    def shift_offset(self, x_offset_delta: int, y_offset_delta: int) -> None:
+    def shift_offsets(self, x_offset_delta: int, y_offset_delta: int) -> None:
         """Shifts the shape's current x and y offsets by the specified distances.
 
         Args:
@@ -70,37 +68,44 @@ class Shape:
         self._x_offset = x_offset_delta
         self._y_offset = y_offset_delta
 
-    def set_dimensions(self, height: int, width: int) -> None:
+    def set_dimensions(self, width: int, height: int) -> None:
         """Sets the height and width of the rectangle.
 
         Args:
-            height (int): height of rectangle. Must be a positive integer
             width (int): width of rectangle. Must be a positive integer
+            height (int): height of rectangle. Must be a positive integer
 
         Raises:
-            TypeError: Raised if height and width are not integers
-            ValueError: Raised if height and width are not positive integers
+            TypeError: Raised if width and height are not integers
+            ValueError: Raised if width and height are not positive integers
         """
-        error_message = 'Height and width must be positive integers'
+        error_message = 'width and height must be positive integers'
 
-        if not isinstance(height, int) or not isinstance(width, int):
+        if not isinstance(width, int) or not isinstance(height, int):
             print(error_message)
             raise TypeError(error_message)
-        if height < 1 or width < 1:
+        if width < 1 or height < 1:
             print(error_message)
             raise ValueError(error_message)
 
-        self._height = height
         self._width = width
+        self._height = height
 
-    def get_offset(self) -> int:
+    def get_offsets(self) -> int:
         """Returns offset with respect to parent Design
 
         Returns:
-           (Tuple[int]): Tuple of length two. 
-                         First element is the x offset and second element is the y offset.
+           (Tuple[int]): x and y offsets of the shape (x_offset, y_offset)
         """
         return (self._x_offset, self._y_offset)
+
+    def get_dimensions(self) -> int:
+        """Returns dimensions of a shape.
+
+        Returns:
+            (Tuple[int]): Width and height of the shape. (width, height)
+        """
+        return (self._width, self._height)
 
     def get_area(self) -> int:
         """Returns area of a shape
@@ -108,7 +113,7 @@ class Shape:
         Returns:
             (int): Area of the shape represented by Shape instance
         """
-        return self._height * self._width
+        return self._width * self._height
 
     def __eq__(self, other) -> bool:
         """Checks if two shapes are equal.
@@ -121,9 +126,9 @@ class Shape:
         """
         return self._x_offset == other._x_offset and \
             self._y_offset == other._y_offset and \
-            self._height == other._height and \
-            self._width == other._width
+            self._width == other._width and \
+            self._height == other._height
 
     def __str__(self) -> str:
         """Returns string value """
-        return f'x_offset:{self._x_offset}, y_offset:{self._y_offset}, w:{self._width}, l:{self._height}'
+        return f'x_offset:{self._x_offset}, y_offset:{self._y_offset}, w:{self._width}, h:{self._height}'

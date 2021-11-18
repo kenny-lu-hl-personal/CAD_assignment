@@ -1,4 +1,4 @@
-#from src.design import Design
+import src.design as design
 
 
 class Instance:
@@ -18,7 +18,7 @@ class Instance:
         def get_offset(self) -> int:
             Returns offset with respect to enclosing design
         def get_design_ref(self) -> Design:
-            Gets the reference designn
+            Gets the reference design
     """
 
     def __init__(self, x_offset, y_offset, design_ref):
@@ -61,14 +61,14 @@ class Instance:
         Raises:
             TypeError: Raised if input parameter is not of type Design
         """
-        if not isinstance(design_ref, Design):
+        if not isinstance(design_ref, design.Design):
             error_message = f'Input parameter {design_ref} is not of type Design'
             print(error_message)
             raise TypeError(error_message)
 
         self._design_ref = design_ref
 
-    def get_offset(self) -> int:
+    def get_offsets(self) -> int:
         """Returns offset with respect to enclosing design
 
         Returns:
@@ -77,7 +77,7 @@ class Instance:
         """
         return (self._x_offset, self._y_offset)
 
-    def get_design_ref(self) -> Design:
+    def get_design_ref(self):
         """Gets the reference design
 
         Returns:
