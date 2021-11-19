@@ -10,6 +10,9 @@ class Shape:
         _height (int): height of rectangle
 
     Methods:
+        def __init__(self, x_offset: int, y_offset: int, width: int, height: int):
+            Initializes offset and dimensions.
+
         def set_offset(self, x_offset: int, y_offset: int) -> None:
             Sets the offset with respect to origin of the parent Design.
 
