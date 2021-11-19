@@ -12,10 +12,13 @@ class Shape:
     Methods:
         def set_offset(self, x_offset: int, y_offset: int) -> None:
             Sets the offset with respect to origin of the parent Design.
+
         def set_dimensions(self, width: int, height: int) -> None:
             Sets the width  of the rectangle.
+
         def get_area(self) -> int:
             Returns area of the rectangle.
+
         def get_offset(self) -> int:
             Returns offset with respect to parent Design.
     """
@@ -28,11 +31,15 @@ class Shape:
             y_offset (int): y offset with respect to the origin (0,0) of the enclosing design
             width (int): Width of rectangle. Must be a positive integer
             height (int): height of rectangle. Must be a positive integer
+
+        Raises:
+            TypeError: Inputs must be of integer type, else type error is raised.
+            ValueError: Width and height must be positive integers, else ValueError is raised.
         """
-        self.set_offset(x_offset, y_offset)
+        self.set_offsets(x_offset, y_offset)
         self.set_dimensions(width, height)
 
-    def set_offset(self, x_offset: int, y_offset: int) -> None:
+    def set_offsets(self, x_offset: int, y_offset: int) -> None:
         """Sets the offset with respect to the origin (0, 0) of the enclosing(parent) design
 
         Args:
@@ -65,8 +72,8 @@ class Shape:
             print(error_message)
             raise TypeError(error_message)
 
-        self._x_offset = x_offset_delta
-        self._y_offset = y_offset_delta
+        self._x_offset += x_offset_delta
+        self._y_offset += y_offset_delta
 
     def set_dimensions(self, width: int, height: int) -> None:
         """Sets the height and width of the rectangle.
