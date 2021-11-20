@@ -123,6 +123,7 @@ Getting them in sorted order will be faster and take just O(n) runtime.
 However, inserting or deleting a shape will become slower and take O(logn).
 
 </ul>
+
 ### 3) Resolve the cyclic design references (mentioned in Edge Cases).
 
 <ul>
